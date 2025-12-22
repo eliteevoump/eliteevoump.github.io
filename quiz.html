@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Telah Ditutup - ELITE EVO UMP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLE SYSTEM (Sama dengan Index) --- */
+        :root {
+            --primary: #0047AB; --dark: #001a45; --accent: #00d2ff;
+            --light: #f8fbff; --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            --shadow-card: 0 10px 40px rgba(0, 71, 171, 0.1);
+        }
+
+        /* --- RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        a { text-decoration: none; }
+
+        /* --- NAVBAR SIMPLE --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%; background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 999;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        
+        .btn-back {
+            padding: 0.6rem 1.5rem; border: 2px solid var(--primary); color: var(--primary);
+            border-radius: 50px; font-weight: 600; transition: 0.3s;
+        }
+        .btn-back:hover { background: var(--primary); color: white; }
+
+        /* --- CLOSED SECTION --- */
+        .info-section { 
+            padding: 4rem 5%; 
+            flex: 1; /* Agar footer terdorong ke bawah */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+            padding: 3rem 2rem;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            border-top: 5px solid var(--primary); /* Aksen warna di atas */
+        }
+
+        .icon-closed {
+            font-size: 4rem;
+            color: #ccc; /* Warna abu-abu untuk menandakan non-aktif */
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card h1 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .btn-home {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 71, 171, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-3px);
+        }
+
+        /* --- FOOTER --- */
+        footer { background: var(--dark); color: white; padding: 2rem 5%; text-align: center; margin-top: auto; }
+        
+        @media (max-width: 768px) {
+            .info-card h1 { font-size: 1.5rem; }
+            .icon-closed { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+           <a href="index.html" class="logo">
+             <img src="Elite Evo Logo.png" alt="Logo" style="max-height: 50px; width: auto; margin-right: 10px;">
+           </a>
+        </div>
+        <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+    </nav>
+
+    <section class="info-section">
+        <div class="info-card">
+            <div class="icon-closed">
+                <i class="fa-regular fa-calendar-xmark"></i>
+            </div>
+            
+            <h1>Quiz Telah Ditutup</h1>
+            
+            <p>
+                Mohon maaf, Quiz Harian <strong>ELITE EVO UMP</strong> saat ini telah ditutup. 
+                Terima kasih atas antusiasme Anda.
+            </p>
+            
+            <a href="index.html" class="btn-home">
+                <i class="fa-solid fa-house"></i> Kembali ke Beranda
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 ELITE EVO Organization UMP. All Rights Reserved.
+    </footer>
+
+</body>
+
+</html>
+

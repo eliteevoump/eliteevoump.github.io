@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Berita & Artikel | ELITE EVO UMP</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <style>
+      /* --- VARIABLE SYSTEM --- */
+      :root {
+        --primary: #0047ab;
+        --dark: #001a45;
+        --accent: #00d2ff;
+        --light: #f8fbff;
+        --white: #ffffff;
+        --gradient: linear-gradient(
+          135deg,
+          var(--dark) 0%,
+          var(--primary) 100%
+        );
+        --shadow-card: 0 10px 40px rgba(0, 71, 171, 0.1);
+      }
+
+      /* --- GLOBAL RESET & STICKY FOOTER SETUP --- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      /* PERBAIKAN 1: Flex Column pada Body agar Footer Sticky */
+      body {
+        background-color: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      a {
+        text-decoration: none;
+      }
+      ul {
+        list-style: none;
+      }
+
+      /* --- NAVBAR --- */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 5%;
+        background: rgba(255, 255, 255, 0.95);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 999;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(10px);
+      }
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--primary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+      .nav-links a {
+        color: var(--dark);
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: 0.3s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--primary);
+      }
+      .btn-join {
+        padding: 0.8rem 2rem;
+        background: var(--gradient);
+        color: var(--white);
+        border-radius: 50px;
+        font-weight: 600;
+        transition: 0.3s;
+        box-shadow: 0 5px 15px rgba(0, 71, 171, 0.3);
+      }
+      .btn-join:hover {
+        transform: translateY(-3px);
+      }
+
+      /* --- HEADER --- */
+      .page-header {
+        background: var(--gradient);
+        padding: 140px 5% 60px;
+        text-align: center;
+        color: white;
+        border-radius: 0 0 50px 50px;
+        margin-bottom: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .page-header h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+      .page-header p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .header-blob {
+        position: absolute;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        filter: blur(50px);
+        top: -100px;
+        right: -50px;
+      }
+
+      /* --- SEARCH --- */
+      .search-container {
+        max-width: 1200px;
+        margin: 0 auto 3rem;
+        padding: 0 5%;
+        display: flex;
+        justify-content: center;
+      }
+      .search-box {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+      }
+      .search-box input {
+        width: 100%;
+        padding: 12px 50px 12px 25px;
+        border-radius: 50px;
+        border: 1px solid #ddd;
+        outline: none;
+        font-size: 1rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        transition: 0.3s;
+      }
+      .search-box input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 5px 20px rgba(0, 71, 171, 0.15);
+      }
+      .search-box i {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--primary);
+        font-size: 1.1rem;
+      }
+
+      /* --- GRID SYSTEM --- */
+      .news-grid-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 5% 4rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        /* Flex grow agar mengisi ruang kosong jika berita sedikit */
+        flex-grow: 1;
+      }
+      .news-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow-card);
+        transition: 0.3s;
+        display: flex;
+        flex-direction: column;
+      }
+      .news-card:hover {
+        transform: translateY(-10px);
+      }
+      .news-img-box {
+        height: 200px;
+        position: relative;
+        overflow: hidden;
+      }
+      .news-img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+      }
+      .news-card:hover .news-img-box img {
+        transform: scale(1.1);
+      }
+      .date-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: var(--white);
+        color: var(--primary);
+        padding: 5px 15px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.8rem;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+      .news-body {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+      .category {
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+      .news-body h3 {
+        font-size: 1.2rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.4;
+        color: var(--dark);
+      }
+      .news-body p {
+        font-size: 0.9rem;
+        color: #666;
+        margin-bottom: 1.5rem;
+        flex-grow: 1;
+      }
+      .read-link {
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: auto;
+      }
+      .read-link:hover {
+        gap: 10px;
+      }
+
+      /* --- PAGINATION --- */
+      .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 4rem;
+      }
+      .page-btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        background: white;
+        color: var(--dark);
+        font-weight: 600;
+        transition: 0.3s;
+        cursor: pointer;
+        user-select: none;
+      }
+      .page-btn.active,
+      .page-btn:hover {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hidden {
+        display: none !important;
+      }
+
+      /* --- FOOTER FIX --- */
+      footer {
+        background: var(--dark);
+        color: white;
+        padding: 4rem 5% 1rem;
+        position: relative;
+        margin-top: auto; /* Push to bottom */
+        z-index: 1;
+      }
+
+      /* PERBAIKAN 2: Memastikan konten footer bisa diklik (di atas wave) */
+      .footer-grid,
+      .copyright {
+        position: relative;
+        z-index: 10;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+      .footer-about h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        font-weight: 800;
+      }
+      .footer-links h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        color: var(--accent);
+      }
+      .footer-links ul li {
+        margin-bottom: 0.8rem;
+      }
+      .footer-links a {
+        color: #ddd;
+        transition: 0.3s;
+        font-size: 0.9rem;
+      }
+      .footer-links a:hover {
+        color: var(--accent);
+        padding-left: 5px;
+      }
+      .copyright {
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 1.5rem;
+        font-size: 0.85rem;
+        opacity: 0.5;
+      }
+
+      /* Wave Decoration */
+      .wave-container {
+        position: absolute;
+        top: -50px;
+        left: 0;
+        width: 100%;
+        line-height: 0;
+        transform: rotate(180deg);
+        z-index: 1; /* Di bawah konten footer */
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        .page-header {
+          padding-top: 120px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">
+        <img
+          src="Elite Evo Logo.png"
+          alt="Logo"
+          style="max-height: 50px; width: auto; margin-right: 10px"
+        />
+        ELITE EVO
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Beranda</a>
+        <a href="index.html#about">Tentang</a>
+        <a href="index.html#divisions">Divisi</a>
+        <a href="absensi.html">Absensi</a>
+        <a href="tutup1.html">Pendaftaran</a>
+        <a href="index.html#gallery">Galeri</a>
+        <a href="berita.html" class="active">Berita</a>
+      </div>
+      <a href="absensi.html" class="btn-join">Absensi</a>
+    </nav>
+
+    <header class="page-header reveal">
+      <div class="header-blob"></div>
+      <h1>Berita & Artikel</h1>
+      <p>
+        Ikuti perkembangan terbaru, prestasi anggota, dan informasi kegiatan
+        ELITE EVO UMP.
+      </p>
+    </header>
+
+    <div class="search-container reveal">
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari judul berita..."
+        />
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+    </div>
+
+    <div class="news-grid-container" id="newsContainer">
+      <div class="news-card reveal">
+        <div class="news-img-box">
+          <img
+            src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="News"
+          />
+          <span class="date-badge">12 Des</span>
+        </div>
+        <div class="news-body">
+          <span class="category">Event</span>
+          <h3>Open Recruitment Batch 2025 Dibuka</h3>
+          <p>
+            Pendaftaran dibuka untuk seluruh mahasiswa aktif UMP dari berbagai
+            fakultas.
+          </p>
+          <a href="#" class="read-link"
+            >Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="news-img-box">
+          <img
+            src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="News"
+          />
+          <span class="date-badge">05 Nov</span>
+        </div>
+        <div class="news-body">
+          <span class="category">Prestasi</span>
+          <h3>Tim Debat Elite Evo Raih Juara 1 Nasional</h3>
+          <p>Prestasi membanggakan kembali ditorehkan dalam ajang NUDC.</p>
+          <a href="#" class="read-link"
+            >Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="news-img-box">
+          <img
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="News"
+          />
+          <span class="date-badge">28 Okt</span>
+        </div>
+        <div class="news-body">
+          <span class="category">Workshop</span>
+          <h3>Public Speaking Masterclass</h3>
+          <p>Pelatihan intensif bersama praktisi komunikasi ternama.</p>
+          <a href="#" class="read-link"
+            >Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="news-img-box">
+          <img
+            src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="News"
+          />
+          <span class="date-badge">15 Okt</span>
+        </div>
+        <div class="news-body">
+          <span class="category">Internal</span>
+          <h3>Gathering & Malam Keakraban</h3>
+          <p>Mempererat tali persaudaraan antar anggota baru dan lama.</p>
+          <a href="#" class="read-link"
+            >Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="news-img-box">
+          <img
+            src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="News"
+          />
+          <span class="date-badge">01 Okt</span>
+        </div>
+        <div class="news-body">
+          <span class="category">Tips</span>
+          <h3>5 Cara Cepat Meningkatkan Skor TOEFL</h3>
+          <p>Tips jitu dari mentor Elite Evo untuk skor diatas 550.</p>
+          <a href="#" class="read-link"
+            >Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="news-img-box">
+          <img
+            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="News"
+          />
+          <span class="date-badge">20 Sep</span>
+        </div>
+        <div class="news-body">
+          <span class="category">Event</span>
+          <h3>Kunjungan Industri ke Jakarta</h3>
+          <p>Belajar budaya kerja profesional di start-up multinasional.</p>
+          <a href="#" class="read-link"
+            >Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="news-img-box">
+          <img
+            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="News"
+          />
+          <span class="date-badge">10 Sep</span>
+        </div>
+        <div class="news-body">
+          <span class="category">Workshop</span>
+          <h3>Pelatihan Dasar Organisasi</h3>
+          <p>Membangun mental kepemimpinan mahasiswa baru.</p>
+          <a href="#" class="read-link"
+            >Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="news-img-box">
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="News"
+          />
+          <span class="date-badge">01 Sep</span>
+        </div>
+        <div class="news-body">
+          <span class="category">Internal</span>
+          <h3>Rapat Kerja Pengurus 2025</h3>
+          <p>Merumuskan program kerja strategis untuk satu periode kedepan.</p>
+          <a href="#" class="read-link"
+            >Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="news-img-box">
+          <img
+            src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            alt="News"
+          />
+          <span class="date-badge">25 Agu</span>
+        </div>
+        <div class="news-body">
+          <span class="category">Event</span>
+          <h3>Elite Evo Goes to School</h3>
+          <p>Sosialisasi pentingnya bahasa Inggris ke SMA se-Banyumas.</p>
+          <a href="#" class="read-link"
+            >Baca Selengkapnya <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination reveal" id="pagination">
+      <div class="page-btn" onclick="prevPage()">
+        <i class="fa-solid fa-chevron-left"></i>
+      </div>
+      <div class="page-btn active" onclick="changePage(1)">1</div>
+      <div class="page-btn" onclick="changePage(2)">2</div>
+      <div class="page-btn" onclick="changePage(3)">3</div>
+      <div class="page-btn" onclick="nextPage()">
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+    </div>
+
+    <footer id="contact">
+      <div class="wave-container">
+        <svg viewBox="0 0 500 150" preserveAspectRatio="none">
+          <path
+            d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z"
+            style="stroke: none; fill: var(--dark)"
+          ></path>
+        </svg>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h2>ELITE EVO UMP</h2>
+          <p>
+            Membangun generasi mahasiswa yang kritis, inovatif, dan berwawasan
+            global melalui penguasaan bahasa dan teknologi.
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Tautan Cepat</h3>
+          <ul>
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="index.html#about">Tentang Kami</a></li>
+            <li><a href="index.html#divisions">Divisi</a></li>
+            <li><a href="berita.html">Berita Kampus</a></li>
+            <li><a href="absensi.html">Absensi</a></li>
+            <li><a href="tutup1.html">Pendaftaran</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Kontak</h3>
+          <ul>
+            <li><i class="fa-solid fa-location-dot"></i> Gd. PKM Lt. 2, UMP</li>
+            <li><i class="fa-solid fa-envelope"></i> elite.evo@ump.ac.id</li>
+            <li><i class="fa-brands fa-whatsapp"></i> +62 812-3456-7890</li>
+          </ul>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2025 ELITE EVO Organization UMP. All Rights Reserved.
+      </div>
+    </footer>
+
+    <script>
+      // 1. ANIMASI REVEAL
+      window.addEventListener("scroll", reveal);
+      window.addEventListener("load", reveal);
+      function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+          var windowheight = window.innerHeight;
+          var revealtop = reveals[i].getBoundingClientRect().top;
+          var revealpoint = 100;
+          if (revealtop < windowheight - revealpoint) {
+            reveals[i].classList.add("active");
+          }
+        }
+      }
+
+      // --- 2. PAGINATION & SEARCH LOGIC ---
+      const newsCards = document.querySelectorAll(".news-card");
+      const itemsPerPage = 3;
+      let currentPage = 1;
+      const totalPages = Math.ceil(newsCards.length / itemsPerPage);
+
+      function showPage(page) {
+        if (page < 1) page = 1;
+        if (page > totalPages) page = totalPages;
+        currentPage = page;
+
+        const start = (currentPage - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+
+        newsCards.forEach((card, index) => {
+          if (index >= start && index < end) {
+            card.classList.remove("hidden");
+            setTimeout(() => card.classList.add("active"), 100);
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        updatePaginationButtons();
+        // Scroll ke atas grid berita
+        document
+          .getElementById("newsContainer")
+          .scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      function updatePaginationButtons() {
+        const buttons = document.querySelectorAll(".page-btn");
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        if (buttons[currentPage]) {
+          buttons[currentPage].classList.add("active");
+        }
+      }
+
+      function changePage(pageNum) {
+        showPage(pageNum);
+      }
+      function prevPage() {
+        if (currentPage > 1) showPage(currentPage - 1);
+      }
+      function nextPage() {
+        if (currentPage < totalPages) showPage(currentPage + 1);
+      }
+
+      // --- 3. SEARCH LOGIC ---
+      const searchInput = document.getElementById("searchInput");
+      const paginationContainer = document.getElementById("pagination");
+
+      searchInput.addEventListener("keyup", function (e) {
+        const searchTerm = e.target.value.toLowerCase();
+
+        if (searchTerm.length > 0) {
+          paginationContainer.classList.add("hidden");
+          newsCards.forEach((card) => {
+            const title = card.querySelector("h3").innerText.toLowerCase();
+            const desc = card.querySelector("p").innerText.toLowerCase();
+            if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+              card.classList.remove("hidden");
+            } else {
+              card.classList.add("hidden");
+            }
+          });
+        } else {
+          paginationContainer.classList.remove("hidden");
+          showPage(1);
+        }
+      });
+
+      // Init Page 1
+      showPage(1);
+    </script>
+  </body>
+</html>

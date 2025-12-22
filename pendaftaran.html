@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Anggota - ELITE EVO UMP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLE SYSTEM (Sama dengan Index) --- */
+        :root {
+            --primary: #0047AB; --dark: #001a45; --accent: #00d2ff;
+            --light: #f8fbff; --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            --shadow-card: 0 10px 40px rgba(0, 71, 171, 0.1);
+        }
+
+        /* --- RESET --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
+        a { text-decoration: none; }
+
+        /* --- NAVBAR SIMPLE --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 5%; background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky; top: 0; z-index: 999;
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        
+        .btn-back {
+            padding: 0.6rem 1.5rem; border: 2px solid var(--primary); color: var(--primary);
+            border-radius: 50px; font-weight: 600; transition: 0.3s;
+        }
+        .btn-back:hover { background: var(--primary); color: white; }
+
+        /* --- FORM SECTION --- */
+        .form-section { padding: 4rem 5%; min-height: 80vh; text-align: center; }
+        .form-header h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .form-header p { max-width: 600px; margin: 0 auto 3rem auto; color: #666; }
+
+        .form-wrapper {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+            padding: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        iframe { width: 100%; height: 1200px; border: none; }
+
+        /* --- FOOTER --- */
+        footer { background: var(--dark); color: white; padding: 2rem 5%; text-align: center; margin-top: 3rem; }
+        
+        @media (max-width: 768px) {
+            .form-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+           <a href="index.html" class="logo">
+        <img src="Elite Evo Logo.png" alt="Logo" style="max-height: 50px; width: auto; margin-right: 10px;">
+        </div>
+        <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
+    </nav>
+
+    <section class="form-section">
+        <div class="form-header">
+            <h1>Formulir Pendaftaran</h1>
+            <p>Silakan lengkapi data diri Anda dengan benar. Pastikan email dan nomor WhatsApp aktif agar kami dapat menghubungi Anda.</p>
+        </div>
+
+        <div class="form-wrapper">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd8tO_k9j8N9x8C9_example/viewform?embedded=true">Memuat…</iframe>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2025 ELITE EVO Organization UMP. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
