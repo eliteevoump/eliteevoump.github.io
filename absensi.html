@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Absensi Telah Ditutup - ELITE EVO UMP</title>
+    <title>ABSENSI ELITE EVO UMP</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -18,7 +18,7 @@
 
         /* --- RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        body { background-color: var(--light); color: var(--dark); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; }
         a { text-decoration: none; }
 
         /* --- NAVBAR SIMPLE --- */
@@ -36,64 +36,28 @@
         }
         .btn-back:hover { background: var(--primary); color: white; }
 
-        /* --- CLOSED SECTION --- */
-        .info-section { 
-            padding: 4rem 5%; 
-            flex: 1; /* Agar footer terdorong ke bawah */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        /* --- FORM SECTION --- */
+        .form-section { padding: 4rem 5%; min-height: 80vh; text-align: center; }
+        .form-header h1 { font-size: 2.5rem; color: var(--primary); margin-bottom: 1rem; }
+        .form-header p { max-width: 600px; margin: 0 auto 3rem auto; color: #666; }
 
-        .info-card {
+        .form-wrapper {
             background: var(--white);
             border-radius: 20px;
             box-shadow: var(--shadow-card);
-            padding: 3rem 2rem;
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-            border-top: 5px solid var(--primary); /* Aksen warna di atas */
+            padding: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
         }
-
-        .icon-closed {
-            font-size: 4rem;
-            color: #ccc; /* Warna abu-abu untuk menandakan non-aktif */
-            margin-bottom: 1.5rem;
-        }
-
-        .info-card h1 {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .info-card p {
-            color: #666;
-            margin-bottom: 2rem;
-        }
-
-        .btn-home {
-            display: inline-block;
-            background: var(--gradient);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0, 71, 171, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .btn-home:hover {
-            transform: translateY(-3px);
-        }
+        
+        iframe { width: 100%; height: 1200px; border: none; }
 
         /* --- FOOTER --- */
-        footer { background: var(--dark); color: white; padding: 2rem 5%; text-align: center; margin-top: auto; }
+        footer { background: var(--dark); color: white; padding: 2rem 5%; text-align: center; margin-top: 3rem; }
         
         @media (max-width: 768px) {
-            .info-card h1 { font-size: 1.5rem; }
-            .icon-closed { font-size: 3rem; }
+            .form-header h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -102,28 +66,19 @@
     <nav>
         <div class="logo">
            <a href="index.html" class="logo">
-             <img src="Elite Evo Logo.png" alt="Logo" style="max-height: 50px; width: auto; margin-right: 10px;">
-           </a>
+        <img src="Elite Evo Logo.png" alt="Logo" style="max-height: 50px; width: auto; margin-right: 10px;">
         </div>
         <a href="index.html" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Kembali</a>
     </nav>
 
-    <section class="info-section">
-        <div class="info-card">
-            <div class="icon-closed">
-                <i class="fa-regular fa-calendar-xmark"></i>
-            </div>
-            
-            <h1>Absensi Telah Ditutup</h1>
-            
-            <p>
-                Mohon maaf, Absensi <strong>ELITE EVO UMP</strong> saat ini telah ditutup. 
-                Terima kasih atas antusiasme Anda.
-            </p>
-            
-            <a href="index.html" class="btn-home">
-                <i class="fa-solid fa-house"></i> Kembali ke Beranda
-            </a>
+    <section class="form-section">
+        <div class="form-header">
+            <h1>ABSENSI ELITE EVO</h1>
+            <p>Silakan lengkapi data diri Anda dengan benar. Pastikan anda hadir tepat waktu dan jangan tipsen!. Terima Kasih</p>
+        </div>
+
+        <div class="form-wrapper">
+            <iframe src="https://form.jotform.com/253433739115154">Memuatâ€¦</iframe>
         </div>
     </section>
 
@@ -132,5 +87,8 @@
     </footer>
 
 </body>
-
 </html>
+
+
+
+
